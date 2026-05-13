@@ -19,7 +19,22 @@ import aloeVera from "../assets/aloeVera.jpeg";
 import echeveria from "../assets/echeveria.jpeg";
 import crassula from "../assets/crassula.jpg";
 
-export const plantList = [
+export type PlantCategory = "classique" | "extérieur" | "plante grasse";
+
+export type PlantLevel = 1 | 2 | 3;
+
+export interface Plant {
+  name: string;
+  category: PlantCategory;
+  id: string;
+  light: PlantLevel;
+  water: PlantLevel;
+  cover: string;
+  price: number;
+  description: string;
+}
+
+export const plantList: Plant[] = [
   {
     name: "monstera",
     category: "classique",
@@ -42,7 +57,6 @@ export const plantList = [
     description:
       "Le Ficus lyrata, ou figuier lyre, est apprécié pour ses grandes feuilles en forme de violon d'un vert profond et brillant. Originaire d'Afrique de l'Ouest, cette plante majestueuse peut devenir un véritable arbre d'intérieur. Elle apporte une ambiance tropicale et moderne à votre espace. Ses feuilles larges et coriaces en font un excellent purificateur d'air naturel.",
   },
-
   {
     name: "pothos argenté",
     category: "classique",
@@ -76,7 +90,6 @@ export const plantList = [
     description:
       "L'olivier (Olea europaea) est un arbre méditerranéen emblématique, symbole de paix et de longévité. Avec son tronc noueux caractéristique et ses feuilles persistantes gris-vert, il apporte une ambiance méditerranéenne à votre jardin ou terrasse. Rustique et résistant à la sécheresse, il peut vivre plusieurs centaines d'années et produit des olives comestibles après quelques années.",
   },
-
   {
     name: "cactus",
     category: "plante grasse",
@@ -110,7 +123,6 @@ export const plantList = [
     description:
       "Les succulentes sont un groupe diversifié de plantes qui stockent l'eau dans leurs feuilles, tiges ou racines charnues. Originaires de régions arides du monde entier, elles se déclinent en milliers d'espèces aux formes et couleurs variées. Parfaites pour les débutants, elles nécessitent peu d'entretien et peuvent survivre dans des conditions difficiles.",
   },
-
   {
     name: "menthe",
     category: "extérieur",
