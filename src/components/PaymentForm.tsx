@@ -1,46 +1,52 @@
 import { usePayment } from '../hooks/usePayment'
 import { usePaymentForm } from '../hooks/usePaymentForm'
+import type { PaymentResult } from '../services/paymentService'
+import type { FormFieldName } from '../hooks/usePaymentForm'
 import '../styles/PaymentForm.css'
 
-function PaymentForm({ amount, onSuccess, onCancel }) {
+interface PaymentFormProps {
+  amount: number
+  onSuccess: (result: PaymentResult) => void
+  onCancel: () => void
+}
+
+function PaymentForm({ amount, onSuccess, onCancel }: PaymentFormProps): React.ReactElement {
   const { isProcessing, error, processPayment } = usePayment()
-  const { 
-    formData, 
-    errors, 
-    updateField, 
-    validateForm, 
-    formatCardNumber, 
+  const {
+    formData,
+    errors,
+    updateField,
+    validateForm,
+    formatCardNumber,
     formatExpiryDate,
-    resetForm 
+    resetForm,
   } = usePaymentForm()
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
-    updateField(name, value)
+    updateField(name as FormFieldName, value)
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    // Validation du formulaire
     if (!validateForm()) {
       return
     }
 
     try {
-      // Appel au service de paiement
       const paymentData = {
-        amount: amount,
+        amount,
         cardNumber: formData.cardNumber.replace(/\s/g, ''),
         expiryDate: formData.expiryDate,
         cvv: formData.cvv,
-        cardholderName: formData.cardholderName
+        cardholderName: formData.cardholderName,
       }
 
       const result = await processPayment(paymentData)
+      resetForm()
       onSuccess(result)
     } catch (err) {
-      // L'erreur est déjà gérée par le hook usePayment
       console.error('Erreur de paiement:', err)
     }
   }
@@ -52,7 +58,7 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
           <h2>Paiement sécurisé</h2>
           <button onClick={onCancel} className="close-btn">×</button>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="cardNumber">Numéro de carte</label>
@@ -61,9 +67,11 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
               id="cardNumber"
               name="cardNumber"
               value={formData.cardNumber}
-              onChange={(e) => updateField('cardNumber', formatCardNumber(e.target.value))}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                updateField('cardNumber', formatCardNumber(e.target.value))
+              }
               placeholder="1234 5678 9012 3456"
-              maxLength="19"
+              maxLength={19}
               required
             />
             {errors.cardNumber && (
@@ -79,9 +87,11 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
                 id="expiryDate"
                 name="expiryDate"
                 value={formData.expiryDate}
-                onChange={(e) => updateField('expiryDate', formatExpiryDate(e.target.value))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  updateField('expiryDate', formatExpiryDate(e.target.value))
+                }
                 placeholder="MM/AA"
-                maxLength="5"
+                maxLength={5}
                 required
               />
               {errors.expiryDate && (
@@ -98,7 +108,7 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
                 value={formData.cvv}
                 onChange={handleInputChange}
                 placeholder="123"
-                maxLength="4"
+                maxLength={4}
                 required
               />
               {errors.cvv && (
@@ -124,9 +134,7 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
           </div>
 
           {error && (
-            <div className="error-message">
-              {error}
-            </div>
+            <div className="error-message">{error}</div>
           )}
 
           <div className="payment-summary">
@@ -137,16 +145,16 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
           </div>
 
           <div className="form-actions">
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={onCancel}
               className="cancel-btn"
               disabled={isProcessing}
             >
               Annuler
             </button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="pay-btn"
               disabled={isProcessing}
             >
@@ -159,4 +167,4 @@ function PaymentForm({ amount, onSuccess, onCancel }) {
   )
 }
 
-export default PaymentForm 
+export default PaymentForm
