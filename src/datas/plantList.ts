@@ -19,20 +19,7 @@ import aloeVera from "../assets/aloeVera.jpeg";
 import echeveria from "../assets/echeveria.jpeg";
 import crassula from "../assets/crassula.jpg";
 
-export type PlantCategory = "classique" | "extérieur" | "plante grasse";
-
-export type PlantLevel = 1 | 2 | 3;
-
-export interface Plant {
-  name: string;
-  category: PlantCategory;
-  id: string;
-  light: PlantLevel;
-  water: PlantLevel;
-  cover: string;
-  price: number;
-  description: string;
-}
+import type { Plant } from "../types";
 
 export const plantList: Plant[] = [
   {

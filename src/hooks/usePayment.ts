@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PaymentService } from "../services/paymentService";
-import type { PaymentData, PaymentResult } from "../services/paymentService";
+import type { PaymentData, PaymentResult } from "../types";
 
 export interface UsePaymentReturn {
   isProcessing: boolean;

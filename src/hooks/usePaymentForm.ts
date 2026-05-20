@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-export type FormFieldName = "cardNumber" | "expiryDate" | "cvv" | "cardholderName";
+import type { FormFieldName } from "../types";
 
 export interface FormData {
   cardNumber: string;

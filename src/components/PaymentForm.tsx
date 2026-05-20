@@ -1,8 +1,7 @@
+import React from 'react'
 import { usePayment } from '../hooks/usePayment'
 import { usePaymentForm } from '../hooks/usePaymentForm'
-import type { PaymentResult } from '../services/paymentService'
-import type { FormFieldName } from '../hooks/usePaymentForm'
-import '../styles/PaymentForm.css'
+import type { PaymentResult, FormFieldName } from '../types'
 
 interface PaymentFormProps {
   amount: number

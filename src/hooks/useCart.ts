@@ -1,20 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Plant } from "../datas/plantList";
-
-export interface CartItem extends Plant {
-  amount: number;
-}
-
-export interface UseCartReturn {
-  cart: CartItem[];
-  addToCart: (plant: Plant) => void;
-  removeFromCart: (plantName: string) => void;
-  updateQuantity: (plantName: string, newAmount: number) => void;
-  clearCart: () => void;
-  getTotal: () => number;
-  getItemCount: () => number;
-  getCartItem: (plantName: string) => CartItem | undefined;
-}
+import type { Plant, CartItem, UseCartReturn } from "../types";
 
 export const useCart = (): UseCartReturn => {
   const [cart, setCart] = useState<CartItem[]>([]);

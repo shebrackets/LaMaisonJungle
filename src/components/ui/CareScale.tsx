@@ -1,8 +1,10 @@
 import Sun from '../../assets/sun.svg'
 import Water from '../../assets/water.svg'
 
+import type { PlantLevel } from '../../types';
+
 interface CareScaleProps {
-    scaleValue: number;
+    scaleValue: PlantLevel;
     careType: 'light' | 'water';
 }
 

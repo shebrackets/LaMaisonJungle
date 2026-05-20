@@ -1,25 +1,4 @@
-export interface PaymentData {
-  amount: number;
-}
-
-export interface PaymentMethod {
-  cardNumber: string;
-  expiryDate: string;
-  cvv: string;
-}
-
-export interface PaymentResult {
-  success: true;
-  transactionId: string;
-  amount: number;
-  currency: string;
-  status: "succeeded";
-  timestamp: string;
-}
-
-export interface ValidationResult {
-  valid: true;
-}
+import type { PaymentData, PaymentMethod, PaymentResult, ValidationResult } from "../types";
 
 export class PaymentService {
   static async processPayment(paymentData: PaymentData): Promise<PaymentResult> {

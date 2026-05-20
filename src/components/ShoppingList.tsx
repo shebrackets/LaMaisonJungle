@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import type React from 'react'
 import { plantList } from '../datas/plantList'
-import type { Plant, PlantCategory } from '../datas/plantList'
+import type { Plant, PlantCategory } from '../types' 
 import PlantItem from './ui/PlantItem'
 import Categories from './Categories'
 import '../styles/ShoppingList.css'

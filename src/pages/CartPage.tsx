@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import PaymentForm from '../components/PaymentForm'
-import type { CartItem } from '../hooks/useCart'
-import type { PaymentResult } from '../services/paymentService'
+import type { CartItem, PaymentResult } from '../types'
 import '../styles/CartPage.css'
 
 interface CartPageProps {

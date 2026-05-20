@@ -1,6 +1,7 @@
+import React from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { plantList } from '../datas/plantList'
-import type { Plant, PlantCategory } from '../datas/plantList'
+import type { Plant, PlantCategory } from '../types'
 import CareScale from '../components/ui/CareScale'
 import '../styles/PlantDetailPage.css'
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../../styles/Banner.css'
 import logo from '../../assets/logo.png'
-import type { CartItem } from '../../hooks/useCart'
+import type { CartItem } from '../../types'
 
 interface BannerProps {
   cart: CartItem[]

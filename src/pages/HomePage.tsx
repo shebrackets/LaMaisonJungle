@@ -1,6 +1,7 @@
+import React from 'react'
 import Footer from '../components/layout/Footer'
 import ShoppingList from '../components/ShoppingList'
-import type { Plant } from '../datas/plantList'
+import type { Plant } from '../types'
 import '../styles/Layout.css'
 
 interface HomePageProps {
